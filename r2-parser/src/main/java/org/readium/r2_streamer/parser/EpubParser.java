@@ -126,8 +126,8 @@ public class EpubParser {
 
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            InputStream is = new ByteArrayInputStream(xmlData.getBytes("UTF-8"));
-            Document document = builder.parse(is);
+            InputStream inputStream = new ByteArrayInputStream(xmlData.getBytes("UTF-8"));
+            Document document = builder.parse(inputStream);
             document.getDocumentElement().normalize();
 
             if (document == null) {
