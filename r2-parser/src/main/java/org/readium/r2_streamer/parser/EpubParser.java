@@ -7,7 +7,9 @@ import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -126,9 +128,8 @@ public class EpubParser {
 
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            StringReader characterStream = new StringReader(xmlData);
-            InputSource inputSource = new InputSource(characterStream);
-            Document document = builder.parse(inputSource);
+            InputStream inputStream = new ByteArrayInputStream(xmlData.getBytes("UTF-8"));
+            Document document = builder.parse(inputStream);
             document.getDocumentElement().normalize();
 
             if (document == null) {
